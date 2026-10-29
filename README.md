@@ -5,17 +5,22 @@ protein structures** (PDB-level). Pure checks, no learnable parameters,
 no RDKit dependency — just `numpy`.
 
 The checker does not trust the generating model's internal state; it
-reads only the output structure file and answers one question: *is this
-structure physically plausible?*
+reads only the output structure file and answers one question: *does
+this structure contain obvious physical implausibilities?*
 
-Battle-tested as an independent QC layer on AI-generated protein-binder
-structures; generalized here as a model-agnostic tool.
+**These checks are necessary, not sufficient: a PASS verdict does not
+imply chemical correctness and does not replace experimental validation.**
+
+Originally built as an independent QC layer for AI-generated
+protein-binder structures; generalized here as a model-agnostic tool.
+This package contains only the deterministic PDB-level subset of that
+QC layer.
 
 ## Checks (all deterministic)
 
 | ID | Check | Rule |
 |----|-------|------|
-| C1 | atomic clashes | non-bonded pair with overlap `r_vdw_i + r_vdw_j - d >= 0.4 A` (MolProbity-style, grid-accelerated) |
+| C1 | atomic clashes | non-bonded pair with overlap `r_vdw_i + r_vdw_j - d >= 0.4 A` — inspired by the MolProbity clashscore concept (Davis et al., 2007); thresholds are our own; not affiliated with or endorsed by the MolProbity project |
 | C2 | bond-length sanity | covalent distance vs standard covalent radii, deviation > 25% flagged |
 | C3 | cross clashes | generated structure vs a reference (ligand/target), when supplied |
 | C4 | packing density | atoms per 1000 A^3 (observational) |
