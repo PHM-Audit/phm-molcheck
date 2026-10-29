@@ -33,10 +33,19 @@ audit digest. Same input → same report, always.
 
 ## Install
 
+**Option A — from the GitHub repo** (no package index needed):
+
 ```bash
-pip install numpy
 pip install git+https://github.com/PHM-Audit/phm-molcheck
 ```
+
+**Option B — from a Release wheel** (faster, no git clone):
+
+```bash
+pip install https://github.com/PHM-Audit/phm-molcheck/releases/download/v1.0.0/phm_molcheck-1.0.0-py3-none-any.whl
+```
+
+PyPI listing is planned; both options above work today.
 
 ## Use as a library
 
