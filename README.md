@@ -87,3 +87,26 @@ pytest tests/ -q
 ## License
 
 MIT
+
+## Industry context (2026-11)
+
+AI-generated protein designs are now reaching wet-lab validation at
+frontier scale: OpenAI's November 2026 preprint ("GPT-6 as a Universal
+Foundation Model for Protein Biology") reports 35 of 322 GPT-6-designed
+minibinders showing binding evidence in wet-lab tests across five
+targets, with sequence design handled by specialized tools. This is
+real progress — and also a concrete case for independent,
+structure-level QC of AI-generated designs: wet-lab binding success
+(10.9% overall) coexists with imperfect structural predictions, and
+downstream users of such structures need deterministic, replayable
+physical-validity checks of the actual artifact files, independent of
+the generating model's self-report.
+
+`phm-molcheck` is exactly that kind of check layer — model-agnostic,
+deterministic, audit-logged. It does not evaluate binding likelihood
+and does not replace experimental validation; it gates the artifact
+file itself.
+
+Source: OpenAI preprint & blog, Nov 24 2026 (35/322 minibinders,
+5 targets, PD-L1/IL-7R-alpha/TrkA/VEGF-A/IL-17A). Recorded here as
+industry context only; OpenAI is not affiliated with this project.
